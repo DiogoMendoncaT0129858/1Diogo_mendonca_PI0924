@@ -17,12 +17,12 @@ for id in range(minNum, maxNum):
     url = r.get(f"https://trainingserver.atec.pt/TrainingServer/Mulberry/JSON/Controls/Calendar/getCalendarDataSource.ashx?command=_SelectAllSchedulesDataSetGivenByUserId&oId={id}&idField=DataValueField&titleField=DataTextField&startDateField=DataStartField&endDateField=DataEndField&backgroundColorField=&textColorField=textcolor&eventColorField=color&description=description&picField=pic&urlField=url&start=1771804800&end=1772409600&_=1771937399276")
     
 
-    if nameFirst and nameLast in url.text:
-        if f"Sessão como {role}" in url.text:
-            print(id, "request: ", url.text, "\n")
-            print(id, "|-- ENCONTRADO --|\n")
-            print("Tentativas: ", attemps)
-            break
+    if f"Sessão como {role}" in url.text:
+        if nameFirst in url.text:
+            if nameLast in url.text:
+                print(id, "request: ", url.text, "\n")
+                print(id, "|-- ENCONTRADO --|\n")
+                print("Tentativas: ", attemps)
+                break
     else:
         print("Não Encontrado...")
-
